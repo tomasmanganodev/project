@@ -63,3 +63,24 @@ exports.postADD_Tag = async (req, res, next) =>{
     const TAG = new Tag(null, tag);
     TAG.save();
 }
+
+exports.postADD_NoteTag = async (req, res, next) =>{
+  const tag = require.body.tag_id;
+  const note = require.body.note_id;
+  const nt = new NoteTag(null, tag_id, note_id);
+  nt.save();
+}
+
+exports.getNotetag = async (req, res, next) =>{
+  try {
+    const note = req.param.note_id
+    const NOTE = await NoteTag.find_by_noteid(note);
+    res.status(201).json({
+      list: NOTE[0],
+    });
+  } catch (error) {
+    next(error);
+  }
+  
+  
+}
