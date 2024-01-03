@@ -13,4 +13,12 @@ module.exports = class noteTag {
         [this.tag_id, this.note_id]
         );
     }
+
+    static find_by_noteid(id){
+        return db.execute(`SELECT id, tag_id, note_id
+        FROM notetags
+        WHERE note_id = ?`,
+        [id]
+        );
+    }
 }
