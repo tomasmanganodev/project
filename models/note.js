@@ -8,7 +8,7 @@ module.exports = class note{
     //
     async save(){
         return await db.execute(`INSERT INTO notes (noteText, archivied, user_id) 
-        VALUES (?)`,
+        VALUES (?, ?, ?)`,
         [this.noteText, this.archivied ,this.user_id]
         );
     }
